@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:syria_meds/core/routing/routes.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -13,28 +15,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightBlue),
         useMaterial3: true,
       ),
-      home: const Home(),
-    );
-  }
-}
-class Home extends StatelessWidget {
-  const Home({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return  Scaffold(
-      appBar: AppBar(title: const Text("AppBar"),elevation: 10.0,),
-      floatingActionButton: SafeArea(
-        child: FloatingActionButton(onPressed: (){},
-          child:const Icon(Icons.add),
-        ),
-      ),
-      body:const Center(
-        child: Text("HomePage"),
-      ),
+      onGenerateRoute: AppRoutes.generateRoute,
+      initialRoute: RouteNames.layoutScreen,
     );
   }
 }
