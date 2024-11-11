@@ -1,13 +1,14 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:syria_meds/common/widgets/app_bar.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  Center(child: Text("home"));
+      return const Scaffold(
+        appBar: MyAppBar(),body:  Center(child: Text("Home Page"),));
 
   }
 }
