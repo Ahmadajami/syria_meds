@@ -54,7 +54,7 @@ class _DraggableSheetState extends State<DraggableSheet> {
                   delegate: SliverChildBuilderDelegate(
                     (BuildContext context, int index) {
                       return Card(
-                        color: Colors.teal[100 * (index % 9)],
+                        color: Colors.blue[100 * (index % 9)],
                         child: Stack(
                           children: [
                             const Center(
