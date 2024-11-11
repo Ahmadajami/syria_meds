@@ -8,8 +8,6 @@ class DraggableSheet extends StatefulWidget {
 }
 
 class _DraggableSheetState extends State<DraggableSheet> {
-  final _sheet = GlobalKey();
-
   @override
   Widget build(BuildContext context) {
     return NotificationListener<DraggableScrollableNotification>(
@@ -37,8 +35,8 @@ class _DraggableSheetState extends State<DraggableSheet> {
                 const SliverToBoxAdapter(
                   child: Padding(
                     padding: EdgeInsets.all(8.0),
-                    child: const Center(
-                        child: Icon(Icons.arrow_forward_ios_outlined)),
+                    child:
+                        Center(child: Icon(Icons.arrow_forward_ios_outlined)),
                   ),
                 ),
                 const SliverAppBar(

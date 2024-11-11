@@ -13,7 +13,6 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.sizeOf(context).width;
     final height = MediaQuery.sizeOf(context).height;
     return Scaffold(
         appBar: const MyAppBar(),
@@ -86,8 +85,8 @@ class _HomeState extends State<Home> {
                                   ),
                                 ),
                               ),
-                              Expanded(
-                                child: const Padding(
+                              const Expanded(
+                                child: Padding(
                                   padding: EdgeInsets.all(8.0),
                                   child: Text.rich(
                                     TextSpan(text: "Product One"),
@@ -109,28 +108,26 @@ class _HomeState extends State<Home> {
                             children: [
                               Expanded(
                                 flex: 1,
-                                child: Container(
-                                  child: CachedNetworkImage(
-                                    fit: BoxFit.cover,
-                                    imageUrl: "https://picsum.photos/900/300",
-                                    errorWidget: (context, url, error) =>
-                                        const Center(
-                                      child: Text.rich(
-                                          softWrap: true,
-                                          TextSpan(
-                                              text: "Something Went Wrong",
-                                              children: [
-                                                WidgetSpan(
-                                                    baseline:
-                                                        TextBaseline.alphabetic,
-                                                    child: Icon(Icons.error))
-                                              ])),
-                                    ),
+                                child: CachedNetworkImage(
+                                  fit: BoxFit.cover,
+                                  imageUrl: "https://picsum.photos/900/300",
+                                  errorWidget: (context, url, error) =>
+                                      const Center(
+                                    child: Text.rich(
+                                        softWrap: true,
+                                        TextSpan(
+                                            text: "Something Went Wrong",
+                                            children: [
+                                              WidgetSpan(
+                                                  baseline:
+                                                      TextBaseline.alphabetic,
+                                                  child: Icon(Icons.error))
+                                            ])),
                                   ),
                                 ),
                               ),
-                              Expanded(
-                                child: const Padding(
+                              const Expanded(
+                                child: Padding(
                                   padding: EdgeInsets.all(8.0),
                                   child: Text.rich(
                                     TextSpan(text: "Product One"),
