@@ -6,12 +6,16 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      leading: IconButton(
-          onPressed: () {
-            ZoomDrawer.of(context)!.toggle();
-          },
-          icon: const Icon(Icons.menu)),
+    return SafeArea(
+      child: AppBar(
+        elevation: 10.0,
+        backgroundColor: Colors.transparent,
+        leading: IconButton(
+            onPressed: () {
+              ZoomDrawer.of(context)!.toggle();
+            },
+            icon: const Icon(Icons.menu)),
+      ),
     );
   }
 
