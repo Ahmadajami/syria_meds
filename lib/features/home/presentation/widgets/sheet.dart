@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class DraggableSheet extends StatefulWidget {
   const DraggableSheet({super.key});
@@ -7,12 +8,32 @@ class DraggableSheet extends StatefulWidget {
   State<DraggableSheet> createState() => _DraggableSheetState();
 }
 
-class _DraggableSheetState extends State<DraggableSheet> {
+class _DraggableSheetState extends State<DraggableSheet>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller = AnimationController(
+    duration: const Duration(seconds: 2),
+    vsync: this,
+  )..repeat(reverse: true);
+  late final Animation<Offset> _offsetAnimation = Tween<Offset>(
+    begin: Offset.zero,
+    end: const Offset(0.0, 1.0),
+  ).animate(CurvedAnimation(
+    parent: _controller,
+    curve: Curves.linear,
+  ));
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return NotificationListener<DraggableScrollableNotification>(
       onNotification: (DraggableScrollableNotification notification) {
         //log("extent: = ${notification.extent}");
+
         //TODO:Animation Logic
         return false;
       },
@@ -23,6 +44,12 @@ class _DraggableSheetState extends State<DraggableSheet> {
           return Container(
             clipBehavior: Clip.hardEdge,
             decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                    color: Colors.grey.shade600,
+                    spreadRadius: 1,
+                    blurRadius: 15)
+              ],
               color: Theme.of(context).canvasColor,
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(25),
@@ -32,11 +59,14 @@ class _DraggableSheetState extends State<DraggableSheet> {
             child: CustomScrollView(
               controller: scrollController,
               slivers: [
-                const SliverToBoxAdapter(
+                SliverToBoxAdapter(
                   child: Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child:
-                        Center(child: Icon(Icons.arrow_forward_ios_outlined)),
+                    padding: const EdgeInsets.all(8.0),
+                    child: SlideTransition(
+                      position: _offsetAnimation,
+                      child: const Center(
+                          child: FaIcon(FontAwesomeIcons.chevronUp)),
+                    ),
                   ),
                 ),
                 const SliverAppBar(
